@@ -29,7 +29,9 @@
           $('form').submit(function(e){
             e.preventDefault(); // prevents page reloading
             //Emits to server the value in the input field and calls it a 'chat message'
-            socket.emit('chat message', $('#m').val());
+            if ($('#m').val()) {
+              socket.emit('chat message', $('#m').val());
+            }
             $('#m').val('');
             return false;
           });
