@@ -25,11 +25,24 @@ body {
 }
 
 div {
-    text-align: center;
+    /* text-align: center; */
     background-color:rgb(130, 224, 255);
     padding-top: 15px; 
     padding-bottom: 15px; 
     border-bottom: solid black 2px
+}
+
+div h1 {
+    text-align: center;
+    padding-bottom: 2vh;
+}
+
+div a {
+    text-align: left;
+    padding: 1vh;
+    margin-left: 1vh;
+    text-decoration: none;
+    background-color: grey;
 }
 
 #forms {
