@@ -24,6 +24,10 @@ io.on('connection', function(socket){
         io.emit('server message', 'User Has Disconnected');
     });
     
+    socket.on('server message', function(msg){
+      io.emit('server message', msg);
+      console.log('server message: ' + msg);
+    });
 });
 
 http.listen(3000, function(){

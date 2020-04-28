@@ -12,7 +12,10 @@
           $('form').submit(function(e){
             e.preventDefault(); // prevents page reloading
             //Emits to server the value in the input field and calls it a 'chat message'
-            if ($('#m').val()) {
+            if ($('#nicknameinput').val() == '') {
+              socket.emit('server message', "Please enter a username - " + socket.id);
+            }
+            else {
               socket.emit('chat message', $('#nicknameinput').val() + ": " + $('#m').val());
             }
             $('#m').val('');
