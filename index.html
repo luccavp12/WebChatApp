@@ -3,23 +3,6 @@
   <head>
     <title>Socket.IO chat</title>
     <link rel="stylesheet" type="text/css" href="style.css">
-    <!-- <style>
-      * { margin: 0; padding: 0; box-sizing: border-box; }
-      body { font: 18px Helvetica, Arial; }
-      div {text-align: center; background-color:rgb(130, 224, 255); padding-top: 15px; padding-bottom: 15px; border-bottom: solid black 2px}
-      #forms {background: #000; position: fixed; bottom: 0; height: 105px; width: 100%;}
-      form { padding: 3px; position: absolute; width: 100%; bottom: 5px; }
-      form input { border: 0; padding: 10px; width: 90%; margin-right: .5%; }
-      form button { width: 9%; background: rgb(130, 224, 255); border: none; padding: 10px; }
-      #nicknameform {position: absolute; top: 5px;}
-      /* #nicknameinput {} */
-      /* #nicknamebutton {} */
-      #messages { list-style-type: none; margin: 0; }
-      #messages li { padding: 5px 10px; }
-      #messages li:nth-child(odd) { background: #eee; }
-      #servermessage {color: red;}
-      
-    </style> -->
   </head>
   <script src="/socket.io/socket.io.js"></script>
   <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
@@ -30,7 +13,7 @@
             e.preventDefault(); // prevents page reloading
             //Emits to server the value in the input field and calls it a 'chat message'
             if ($('#m').val()) {
-              socket.emit('chat message', $('#m').val());
+              socket.emit('chat message', $('#nicknameinput').val() + ": " + $('#m').val());
             }
             $('#m').val('');
             return false;
