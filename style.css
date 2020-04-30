@@ -24,7 +24,7 @@ body {
     font: 18px Helvetica, Arial; 
 }
 
-div {
+#header {
     /* text-align: center; */
     background-color:rgb(130, 224, 255);
     padding-top: 15px; 
@@ -74,9 +74,16 @@ form button {
     position: absolute; 
     top: 5px;
 }
+#chatlog {
+    display: -ms-flex; 
+    display: -webkit-flex; 
+    display: flex; 
+}
 #messages { 
     list-style-type: none; 
     margin: 0; 
+    width: 90%;
+    display: inline-block;
 }
 #messages li { 
     padding: 5px 10px; 
@@ -84,6 +91,21 @@ form button {
 #messages li:nth-child(odd) { 
     background: #eee; 
 }
+#timestamps {
+    margin: 0;
+    width: 10%;
+    float: right;
+    text-align: right;
+    list-style-type: none; 
+}
+#timestamps li {
+    padding: 5px 10px;
+}
+
+#timestamps li:nth-child(odd) { 
+    background: #eee; 
+}
+
 #servermessage {
     color: red;
 }

@@ -9,6 +9,14 @@
   <script>
       $(function () {
           var socket = io();
+          var today = new Date();
+          if (today.getHours() > 12) {
+            var time = (today.getHours() - 12) + ":" + today.getMinutes() + " PM";
+          }
+          else {
+            var time = today.getHours() + ":" + today.getMinutes() + " AM";
+          }
+          // var time = hours + ":" + today.getMinutes();
           $('form').submit(function(e){
             e.preventDefault(); // prevents page reloading
             //Emits to server the value in the input field and calls it a 'chat message'
@@ -24,19 +32,27 @@
           socket.on('chat message', function(msg){
             //Everytime someone sends a chat it creates a new <li> bellow
               $('#messages').append($('<li>').text(msg));
+                              
+              $('#timestamps').append($('<li>').text(time));
           });
           //Server message sends to all sockets
           socket.on('server message', function(msg){
               $('#messages').append($('<li id="servermessage">').text(msg));
+              $('#timestamps').append($('<li>').text(time));
           });
       });
   </script>
   <body>
-    <div>
+    <div id="header">
       <a href="settings.html">Settings</a>
       <h1>Welcome to my Chat App!</h1>
     </div>
-    <ul id="messages"></ul>
+
+    <div id="chatlog">
+      <ul id="messages"></ul>
+    
+      <ul id="timestamps"></ul>
+    </div>
 
     <div id="forms">
       <form id="nicknameform" action="">

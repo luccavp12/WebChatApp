@@ -15,13 +15,13 @@ io.on('connection', function(socket){
     io.emit('server message', 'Welcome New User!');
 
     socket.on('chat message', function(msg){
-        io.emit('chat message', msg);
-        console.log('message: ' + msg);
+      io.emit('chat message', msg);
+      console.log('message: ' + msg);
     });
 
     socket.on('disconnect', function(){
-        console.log('user disconnected');
-        io.emit('server message', 'User Has Disconnected');
+      console.log('user disconnected');
+      io.emit('server message', 'User Has Disconnected');
     });
     
     socket.on('server message', function(msg){
