@@ -3,10 +3,19 @@ var app = express();
 var http = require('http').createServer(app);
 var io = require('socket.io')(http);
 
-app.use(express.static('.'));
+//Including style files
+app.use(express.static('style/'));
 
+//We define a route handler / that gets called 
+//when we hit our website home.
 app.get('/', function(req, res){
   res.sendFile(__dirname + '/index.html');
+});
+
+//We can do the same when we want to access another
+//
+app.get('/settings.html', function(req, res){
+  res.sendFile(__dirname + '/settings.html');
 });
 
 io.on('connection', function(socket){

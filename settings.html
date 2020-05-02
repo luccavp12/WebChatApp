@@ -1,0 +1,68 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Socket.IO Chat</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+  </head>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+  <script>
+      $(function () {
+          var socket = io();
+          var today = new Date();
+          if (today.getHours() > 12) {
+            var time = (today.getHours() - 12) + ":" + today.getMinutes() + " PM";
+          }
+          else {
+            var time = today.getHours() + ":" + today.getMinutes() + " AM";
+          }
+          // var time = hours + ":" + today.getMinutes();
+          $('form').submit(function(e){
+            e.preventDefault(); // prevents page reloading
+            //Emits to server the value in the input field and calls it a 'chat message'
+            if ($('#nicknameinput').val() == '') {
+              socket.emit('server message', "Please enter a username - " + socket.id);
+            }
+            else {
+              socket.emit('chat message', $('#nicknameinput').val() + ": " + $('#m').val());
+            }
+            $('#m').val('');
+            return false;
+          });
+          socket.on('chat message', function(msg){
+            //Everytime someone sends a chat it creates a new <li> bellow
+              $('#messages').append($('<li>').text(msg));
+                              
+              $('#timestamps').append($('<li>').text(time));
+          });
+          //Server message sends to all sockets
+          socket.on('server message', function(msg){
+              $('#messages').append($('<li id="servermessage">').text(msg));
+              $('#timestamps').append($('<li>').text(time));
+          });
+      });
+  </script>
+  <body>
+    <div id="header">
+      <a href="settings.html">Settings</a>
+      <h1>Welcome to my Chat App!</h1>
+    </div>
+
+    <div id="chatlog">
+      <ul id="messages"></ul>
+    
+      <ul id="timestamps"></ul>
+    </div>
+
+    <div id="forms">
+      <form id="nicknameform" action="">
+        <input id="nicknameinput" autocomplete="off"><button id="nicknamesubmit">Submit</button>
+      </form>
+
+      <form action="">
+        <input id="m" autocomplete="off"><button>Send</button>
+      </form>
+    </div>
+
+  </body>
+</html>

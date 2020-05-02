@@ -42,7 +42,13 @@ div a {
     padding: 1vh;
     margin-left: 1vh;
     text-decoration: none;
-    background-color: grey;
+    background-color: #d7f4fd;
+    color: black;
+    border-radius: 5px;
+}
+
+div a:hover {
+    background-color: gray;
 }
 
 #forms {
